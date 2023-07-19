@@ -1,5 +1,5 @@
 function Profile() {
-  return <div className="bg-green-500">profile</div>;
+  return <div className="">profile</div>;
 }
 
 export default Profile;

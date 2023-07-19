@@ -1,14 +1,18 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navigation() {
+  const style = ({ isActive }) => ({
+    fontWeight: isActive ? "bold" : "normal",
+  });
+
   return (
     <nav>
-      <Link className="px-6 py-2" to="/home">
+      <NavLink style={style} className="px-6 py-5" to="/home">
         Home
-      </Link>
-      <Link className="px-6 py-2" to="/profile">
+      </NavLink>
+      <NavLink style={style} className="px-6 py-5" to="/profile">
         Profile
-      </Link>
+      </NavLink>
     </nav>
   );
 }
