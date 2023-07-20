@@ -10,6 +10,10 @@
     @apply flex justify-center;
   }
 
+  .radio-button {
+    @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300;
+  }
+
   .club {
     @apply w-10 ml-2 appearance-none bg-transparent border-b border-b-slate-950 focus:outline-none;
   }

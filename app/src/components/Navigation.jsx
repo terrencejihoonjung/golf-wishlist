@@ -6,7 +6,7 @@ function Navigation() {
   });
 
   return (
-    <nav class="bg-neutral-50">
+    <nav className="bg-neutral-50">
       <NavLink style={style} className="px-6 py-5" to="/home">
         Home
       </NavLink>

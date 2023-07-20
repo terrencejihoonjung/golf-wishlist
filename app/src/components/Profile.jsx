@@ -22,6 +22,8 @@ function Profile() {
     lobWedge: 0,
   });
   const [isEditing, setIsEditing] = useState(false);
+  const [distance, setDistance] = useState("yds");
+  const [handicap, setHandicap] = useState("");
 
   function handleEdit() {
     setIsEditing(!isEditing);
@@ -36,16 +38,64 @@ function Profile() {
           </div>
 
           <h2 className="text-xl text-bold mt-4">Terrence Jung</h2>
-          <h3 className="text-md text-bold">Amateur</h3>
+          <select name="exp" id="exp">
+            <option value="amateur">Amateur</option>
+            <option value="pro">Pro</option>
+            <option value="master">Master</option>
+          </select>
+
+          <label className="mt-2">
+            HC:
+            <input
+              className="w-12"
+              type="text"
+              value={handicap}
+              onChange={(e) => setHandicap(e.target.value)}
+            />
+          </label>
         </div>
 
         <div className="flex basis-2/3 justify-center">
           <div className="lg:w-224 md:w-128 sm:w-96 h-128 flex flex-col border-2 border-slate-700/50 rounded-3xl shadow-md">
             <h2 className="text-2xl text-bold p-5">My Yardages</h2>
 
-            <YardageDisplay yardages={yardages} />
+            <YardageDisplay distance={distance} yardages={yardages} />
 
-            <div className="flex justify-end">
+            <div className="flex justify-end items-baseline">
+              <div className="flex items-center mx-2">
+                <input
+                  id="yard-radio"
+                  type="radio"
+                  value={distance}
+                  checked={distance === "yds"}
+                  name="yards"
+                  className="radio-button"
+                  onChange={() => setDistance("yds")}
+                />
+                <label
+                  htmlFor="yard-radio"
+                  className="ml-2 text-sm font-medium text-slate-500"
+                >
+                  Yards
+                </label>
+              </div>
+              <div className="flex items-center mx-2">
+                <input
+                  id="meter-radio"
+                  type="radio"
+                  value={distance}
+                  checked={distance === "m"}
+                  name="meters"
+                  className="radio-button"
+                  onChange={() => setDistance("m")}
+                />
+                <label
+                  htmlFor="meter-radio"
+                  className="ml-2 text-sm font-medium text-slate-500"
+                >
+                  Meters
+                </label>
+              </div>
               <button
                 className="my-2 mx-6 bg-zanah-500 p-1 w-20 rounded-full text-slate-100"
                 onClick={() => {
@@ -63,14 +113,12 @@ function Profile() {
                 className="modal-box lg:w-224 md:w-128 sm:w-96 h-128"
               >
                 <h3 className="text-2xl text-bold p-5">New Yardages</h3>
-                <YardageForm yardages={yardages} setYardages={setYardages} />
+                <YardageForm
+                  yardages={yardages}
+                  setYardages={setYardages}
+                  distance={distance}
+                />
                 <div className="modal-action flex justify-end mr-10 mt-4">
-                  <button
-                    onClick={() => handleEdit()}
-                    className="hover:text-zanah-500 mr-6"
-                  >
-                    Cancel
-                  </button>
                   <button
                     onClick={() => handleEdit()}
                     className="hover:text-zanah-500"
