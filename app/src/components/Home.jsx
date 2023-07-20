@@ -32,8 +32,8 @@ function Home() {
       </div>
 
       <div class="flex flex-col justify-center items-center h-160">
-        <h2 class="m-2 text-xl">Contact Info</h2>
-        <nav class="w-screen py-5">
+        <h2 class="m-3 text-xl">Contact Info</h2>
+        <nav class="w-full py-5">
           <Link class="mx-4" to="https://github.com/terrencejihoonjung">
             Github
           </Link>
