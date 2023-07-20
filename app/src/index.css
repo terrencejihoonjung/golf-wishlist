@@ -13,4 +13,8 @@
   .club {
     @apply w-10 ml-2 appearance-none bg-transparent border-b border-b-slate-950 focus:outline-none;
   }
+
+  .club-col {
+    @apply flex flex-col justify-around items-center h-full basis-1/3;
+  }
 }
