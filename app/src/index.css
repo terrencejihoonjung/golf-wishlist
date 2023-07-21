@@ -18,6 +18,10 @@
     @apply w-10 ml-2 appearance-none bg-transparent border-b border-b-slate-950 focus:outline-none;
   }
 
+  .scorecard-input {
+    @apply appearance-none bg-transparent border-b border-b-slate-950 focus:outline-none w-4;
+  }
+
   .scorecard {
     @apply ml-2 appearance-none bg-transparent border-b border-b-slate-950 focus:outline-none;
   }

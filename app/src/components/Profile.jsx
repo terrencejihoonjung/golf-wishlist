@@ -2,6 +2,7 @@ import { useState } from "react";
 import { UserIcon } from "@heroicons/react/24/outline";
 import YardageForm from "./YardageForm";
 import YardageDisplay from "./YardageDisplay";
+import ScorecardForm from "./ScorecardForm";
 
 function Profile() {
   const [yardages, setYardages] = useState({
@@ -21,12 +22,76 @@ function Profile() {
     sandWedge: 0,
     lobWedge: 0,
   });
+  const [scorecard, setScorecard] = useState({
+    hOne: "",
+    hTwo: "",
+    hThree: "",
+    hFour: "",
+    hFive: "",
+    hSix: "",
+    hSeven: "",
+    hEight: "",
+    hNine: "",
+    hTen: "",
+    hEleven: "",
+    hTwelve: "",
+    hThirteen: "",
+    hFourteen: "",
+    hFifteen: "",
+    hSixteen: "",
+    hSeventeen: "",
+    hEighteen: "",
+    myOne: "",
+    myTwo: "",
+    myThree: "",
+    myFour: "",
+    myFive: "",
+    mySix: "",
+    mySeven: "",
+    myEight: "",
+    myNine: "",
+    myTen: "",
+    myEleven: "",
+    myTwelve: "",
+    myThirteen: "",
+    myFourteen: "",
+    myFifteen: "",
+    mySixteen: "",
+    mySeventeen: "",
+    myEighteen: "",
+    parOne: "",
+    parTwo: "",
+    parThree: "",
+    parFour: "",
+    parFive: "",
+    parSix: "",
+    parSeven: "",
+    parEight: "",
+    parNine: "",
+    parTen: "",
+    parEleven: "",
+    parTwelve: "",
+    parThirteen: "",
+    parFourteen: "",
+    parFifteen: "",
+    parSixteen: "",
+    parSeventeen: "",
+    parEighteen: "",
+  });
+
+  const [scorecards, setScorecards] = useState([]);
+  const [addScorecard, setAddScorecard] = useState(false);
+
   const [isEditing, setIsEditing] = useState(false);
   const [distance, setDistance] = useState("yds");
   const [handicap, setHandicap] = useState("");
 
   function handleEdit() {
     setIsEditing(!isEditing);
+  }
+
+  function toggleScorecardForm() {
+    setAddScorecard(!addScorecard);
   }
 
   return (
@@ -137,46 +202,15 @@ function Profile() {
           <h1 className="ml-48 underline text-2xl text-extrabold">
             My Scorecards
           </h1>
-          <button className="mr-32 text-lg hover:text-zanah-500">
-            Add Scorecard
+          <button
+            onClick={() => toggleScorecardForm()}
+            className="mr-32 text-lg hover:text-zanah-500"
+          >
+            {addScorecard ? "Close" : "Add Scorecard"}
           </button>
         </div>
 
-        <form className="h-128 mx-80 my-8 border-4 border-slate-100 rounded-2xl">
-          <div className="flex h-112">
-            <div className="flex flex-col justify-around items-base basis-1/3 border pl-6">
-              <label>
-                Date:
-                <input className="scorecard w-20" type="date"></input>
-              </label>
-
-              <label>
-                Location:
-                <input className="scorecard w-48" type="text"></input>
-              </label>
-
-              <label>
-                Tee Box:{" "}
-                <select name="tee-box">
-                  <option value="red">Red</option>
-                  <option value="white">White</option>
-                  <option value="blue">Blue</option>
-                  <option value="black">Black</option>
-                </select>
-              </label>
-            </div>
-            <div className="flex flex-col basis-2/3 border">
-              <h2 className="ml-2 mt-2">Enter Hole Information</h2>
-              <div>hole, handicap, and par</div>
-            </div>
-          </div>
-
-          <div className="flex justify-end h-16 w-full items-center">
-            <button className="mr-4 hover:text-zanah-500" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
+        {addScorecard && <ScorecardForm scorecard={scorecard} />}
 
         <div className="h-192 w-full text-center">
           <h1 className="text-2xl">LIST</h1>
