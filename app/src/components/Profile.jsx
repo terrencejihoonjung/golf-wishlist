@@ -3,26 +3,10 @@ import { UserIcon } from "@heroicons/react/24/outline";
 import YardageForm from "./YardageForm";
 import YardageDisplay from "./YardageDisplay";
 import ScorecardForm from "./ScorecardForm";
+import ScorecardList from "./ScorecardList";
 
 function Profile() {
-  const [yardages, setYardages] = useState({
-    driver: 0,
-    threeWood: 0,
-    fiveWood: 0,
-    hybrid: 0,
-    threeIron: 0,
-    fourIron: 0,
-    fiveIron: 0,
-    sixIron: 0,
-    sevenIron: 0,
-    eightIron: 0,
-    nineIron: 0,
-    pitchingWedge: 0,
-    gapWedge: 0,
-    sandWedge: 0,
-    lobWedge: 0,
-  });
-  const [scorecard, setScorecard] = useState({
+  const initialScorecard = {
     hOne: "",
     hTwo: "",
     hThree: "",
@@ -77,7 +61,26 @@ function Profile() {
     parSixteen: "",
     parSeventeen: "",
     parEighteen: "",
-  });
+  };
+  const initialYardages = {
+    driver: 0,
+    threeWood: 0,
+    fiveWood: 0,
+    hybrid: 0,
+    threeIron: 0,
+    fourIron: 0,
+    fiveIron: 0,
+    sixIron: 0,
+    sevenIron: 0,
+    eightIron: 0,
+    nineIron: 0,
+    pitchingWedge: 0,
+    gapWedge: 0,
+    sandWedge: 0,
+    lobWedge: 0,
+  };
+  const [yardages, setYardages] = useState(initialYardages);
+  const [scorecard, setScorecard] = useState(initialScorecard);
 
   const [scorecards, setScorecards] = useState([]);
   const [addScorecard, setAddScorecard] = useState(false);
@@ -92,6 +95,12 @@ function Profile() {
 
   function toggleScorecardForm() {
     setAddScorecard(!addScorecard);
+  }
+
+  function handleScorecardSubmit(e) {
+    e.preventDefault();
+    setScorecards((scorecards) => [scorecard, ...scorecards]);
+    setScorecard(initialScorecard);
   }
 
   return (
@@ -210,11 +219,15 @@ function Profile() {
           </button>
         </div>
 
-        {addScorecard && <ScorecardForm scorecard={scorecard} />}
+        {addScorecard && (
+          <ScorecardForm
+            scorecard={scorecard}
+            setScorecard={setScorecard}
+            handleScorecardSubmit={handleScorecardSubmit}
+          />
+        )}
 
-        <div className="h-192 w-full text-center">
-          <h1 className="text-2xl">LIST</h1>
-        </div>
+        <ScorecardList scorecards={scorecards} />
       </div>
     </div>
   );
