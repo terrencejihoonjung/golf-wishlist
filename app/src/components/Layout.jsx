@@ -11,7 +11,7 @@ function Layout() {
       <Navigation />
 
       <main className="bg-neutral-50 w-full h-full pt-6">
-        <Outlet />;
+        <Outlet />
       </main>
     </>
   );

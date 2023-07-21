@@ -45,7 +45,7 @@ function Profile() {
           </select>
 
           <label className="mt-2">
-            HC:
+            HC:{" "}
             <input
               className="w-12"
               type="text"
@@ -132,10 +132,55 @@ function Profile() {
         </div>
       </div>
 
-      <div className="h-192">
-        <h1 className="pl-40 underline text-2xl text-extrabold">
-          My Scorecards
-        </h1>
+      <div className="h-full">
+        <div className="flex justify-between w-full">
+          <h1 className="ml-48 underline text-2xl text-extrabold">
+            My Scorecards
+          </h1>
+          <button className="mr-32 text-lg hover:text-zanah-500">
+            Add Scorecard
+          </button>
+        </div>
+
+        <form className="h-128 mx-80 my-8 border-4 border-slate-100 rounded-2xl">
+          <div className="flex h-112">
+            <div className="flex flex-col justify-around items-base basis-1/3 border pl-6">
+              <label>
+                Date:
+                <input className="scorecard w-20" type="date"></input>
+              </label>
+
+              <label>
+                Location:
+                <input className="scorecard w-48" type="text"></input>
+              </label>
+
+              <label>
+                Tee Box:{" "}
+                <select name="tee-box">
+                  <option value="red">Red</option>
+                  <option value="white">White</option>
+                  <option value="blue">Blue</option>
+                  <option value="black">Black</option>
+                </select>
+              </label>
+            </div>
+            <div className="flex flex-col basis-2/3 border">
+              <h2 className="ml-2 mt-2">Enter Hole Information</h2>
+              <div>hole, handicap, and par</div>
+            </div>
+          </div>
+
+          <div className="flex justify-end h-16 w-full items-center">
+            <button className="mr-4 hover:text-zanah-500" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+
+        <div className="h-192 w-full text-center">
+          <h1 className="text-2xl">LIST</h1>
+        </div>
       </div>
     </div>
   );
