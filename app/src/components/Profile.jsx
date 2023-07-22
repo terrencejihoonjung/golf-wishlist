@@ -206,14 +206,14 @@ function Profile() {
         </div>
       </div>
 
-      <div className="h-full">
+      <div className="h-full mt-24 pb-32">
         <div className="flex justify-between w-full">
-          <h1 className="ml-48 underline text-2xl text-extrabold">
+          <h1 className="ml-36 underline text-2xl text-extrabold">
             My Scorecards
           </h1>
           <button
             onClick={() => toggleScorecardForm()}
-            className="mr-32 text-lg hover:text-zanah-500"
+            className="mr-36 text-lg hover:text-zanah-500"
           >
             {addScorecard ? "Close" : "Add Scorecard"}
           </button>
@@ -227,7 +227,7 @@ function Profile() {
           />
         )}
 
-        <ScorecardList scorecards={scorecards} />
+        <ScorecardList scorecard={scorecard} scorecards={scorecards} />
       </div>
     </div>
   );
