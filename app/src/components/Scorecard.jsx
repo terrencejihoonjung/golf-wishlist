@@ -1,9 +1,31 @@
-function Scorecard({ scorecard }) {
+import { TrashIcon } from "@heroicons/react/24/outline";
+
+function Scorecard({ scorecard, handleDeleteScorecard }) {
+  //   const totalPar = Object.keys(scorecard).reduce((prev, key) => {
+  //     if (key.startsWith("par")) {
+  //       return prev[key] + scorecard[key];
+  //     }
+  //   });
+  //   const totalScore = Object.keys(scorecard).reduce((prev, key) => {
+  //     if (key.startsWith("my")) {
+  //       return prev[key] + scorecard[key];
+  //     }
+  //   });
   return (
-    <div className="flex flex-col h-128 border p-4 rounded-2xl">
-      <h2 className=" text-zanah-950">
-        This is location {"(Tee)"} - This is date
-      </h2>
+    <div className="flex flex-col h-128 border-2 border-slate-300 shadow-lg p-4 rounded-2xl">
+      <div className="flex">
+        <h2 className="grow text-zanah-950">
+          This is location {"(Tee)"} - This is date
+        </h2>
+
+        <i
+          onClick={() => handleDeleteScorecard(scorecard.id)}
+          className="h-6 w-6"
+        >
+          <TrashIcon />
+        </i>
+      </div>
+
       <div className="flex flex-col justify-around basis-5/6">
         <span className="flex flex-row justify-around">
           <h3 className="w-8">Hole: </h3>
@@ -28,450 +50,72 @@ function Scorecard({ scorecard }) {
 
         <span className="flex flex-row justify-around">
           <h3 className="w-8">HC: </h3>
-          <input
-            type="text"
-            value={scorecard.hOne}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hOne: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hTwo}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hTwo: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hThree}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hThree: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hFour}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hFour: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hFive}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hFive: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hSix}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hSix: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hSeven}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hSeven: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hEight}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hEight: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hNine}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hNine: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hTen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hTen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hEleven}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hEleven: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hTwelve}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hTwelve: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hThirteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hThirteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hFourteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hFourteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hFifteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hFifteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hSixteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hSixteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hSeventeen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hSeventeen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.hEighteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, hEighteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
+          <p className="scorecard-input">{scorecard.hOne}</p>
+          <p className="scorecard-input">{scorecard.hTwo}</p>
+          <p className="scorecard-input">{scorecard.hThree}</p>
+          <p className="scorecard-input">{scorecard.hFour}</p>
+          <p className="scorecard-input">{scorecard.hFive}</p>
+          <p className="scorecard-input">{scorecard.hSix}</p>
+          <p className="scorecard-input">{scorecard.hSeven}</p>
+          <p className="scorecard-input">{scorecard.hEight}</p>
+          <p className="scorecard-input">{scorecard.hNine}</p>
+          <p className="scorecard-input">{scorecard.hTen}</p>
+          <p className="scorecard-input">{scorecard.hEleven}</p>
+          <p className="scorecard-input">{scorecard.hTwelve}</p>
+          <p className="scorecard-input">{scorecard.hThirteen}</p>
+          <p className="scorecard-input">{scorecard.hFourteen}</p>
+          <p className="scorecard-input">{scorecard.hFifteen}</p>
+          <p className="scorecard-input">{scorecard.hSixteen}</p>
+          <p className="scorecard-input">{scorecard.hSeventeen}</p>
+          <p className="scorecard-input">{scorecard.hEighteen}</p>
         </span>
 
         <span className="flex flex-row justify-around">
           <h3 className="w-8">TJ: </h3>
-          <input
-            type="text"
-            value={scorecard.myOne}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myOne: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myTwo}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myTwo: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myThree}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myThree: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myFour}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myFour: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myFive}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myFive: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.mySix}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, mySix: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.mySeven}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, mySeven: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myEight}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myEight: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myNine}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myNine: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myTen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myTen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myEleven}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myEleven: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myTwelve}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myTwelve: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myThirteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myThirteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myFourteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myFourteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myFifteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myFifteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.mySixteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, mySixteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.mySeventeen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, mySeventeen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.myEighteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, myEighteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
+          <p className="scorecard-input">{scorecard.myOne}</p>
+          <p className="scorecard-input">{scorecard.myTwo}</p>
+          <p className="scorecard-input">{scorecard.myThree}</p>
+          <p className="scorecard-input">{scorecard.myFour}</p>
+          <p className="scorecard-input">{scorecard.myFive}</p>
+          <p className="scorecard-input">{scorecard.mySix}</p>
+          <p className="scorecard-input">{scorecard.mySeven}</p>
+          <p className="scorecard-input">{scorecard.myEight}</p>
+          <p className="scorecard-input">{scorecard.myNine}</p>
+          <p className="scorecard-input">{scorecard.myTen}</p>
+          <p className="scorecard-input">{scorecard.myEleven}</p>
+          <p className="scorecard-input">{scorecard.myTwelve}</p>
+          <p className="scorecard-input">{scorecard.myThirteen}</p>
+          <p className="scorecard-input">{scorecard.myFourteen}</p>
+          <p className="scorecard-input">{scorecard.myFifteen}</p>
+          <p className="scorecard-input">{scorecard.mySixteen}</p>
+          <p className="scorecard-input">{scorecard.mySeventeen}</p>
+          <p className="scorecard-input">{scorecard.myEighteen}</p>
         </span>
 
         <span className="flex flex-row justify-around">
           <h3 className="w-8">Par: </h3>
-          <input
-            type="text"
-            value={scorecard.parOne}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parOne: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parTwo}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parTwo: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parThree}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parThree: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parFour}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parFour: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parFive}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parFive: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parSix}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parSix: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parSeven}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parSeven: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parEight}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parEight: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parNine}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parNine: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parTen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parTen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parEleven}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parEleven: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parTwelve}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parTwelve: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parThirteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parThirteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parFourteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parFourteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parFifteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parFifteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parSixteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parSixteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parSeventeen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parSeventeen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
-          <input
-            type="text"
-            value={scorecard.parEighteen}
-            onChange={(e) =>
-              setScorecard({ ...scorecard, parEighteen: e.target.value })
-            }
-            className="scorecard-input"
-          ></input>
+          <p className="scorecard-input">{scorecard.parOne}</p>
+          <p className="scorecard-input">{scorecard.parTwo}</p>
+          <p className="scorecard-input">{scorecard.parThree}</p>
+          <p className="scorecard-input">{scorecard.parFour}</p>
+          <p className="scorecard-input">{scorecard.parFive}</p>
+          <p className="scorecard-input">{scorecard.parSix}</p>
+          <p className="scorecard-input">{scorecard.parSeven}</p>
+          <p className="scorecard-input">{scorecard.parEight}</p>
+          <p className="scorecard-input">{scorecard.parNine}</p>
+          <p className="scorecard-input">{scorecard.parTen}</p>
+          <p className="scorecard-input">{scorecard.parEleven}</p>
+          <p className="scorecard-input">{scorecard.parTwelve}</p>
+          <p className="scorecard-input">{scorecard.parThirteen}</p>
+          <p className="scorecard-input">{scorecard.parFourteen}</p>
+          <p className="scorecard-input">{scorecard.parFifteen}</p>
+          <p className="scorecard-input">{scorecard.parSixteen}</p>
+          <p className="scorecard-input">{scorecard.parSeventeen}</p>
+          <p className="scorecard-input">{scorecard.parEighteen}</p>
         </span>
       </div>
       <div className="flex justify-end basis-1/6 items-center mr-4">
-        <p className="underline underline-offset-4">SCORE: +4</p>
+        <p className="underline underline-offset-4">SCORE: 0</p>
       </div>
     </div>
   );

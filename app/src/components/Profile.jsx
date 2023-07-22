@@ -63,6 +63,7 @@ function Profile() {
     parEighteen: "",
   };
   const initialYardages = {
+    key: 0,
     driver: 0,
     threeWood: 0,
     fiveWood: 0,
@@ -88,6 +89,7 @@ function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [distance, setDistance] = useState("yds");
   const [handicap, setHandicap] = useState("");
+  const [scorecardId, setScorecardId] = useState(0);
 
   function handleEdit() {
     setIsEditing(!isEditing);
@@ -99,8 +101,16 @@ function Profile() {
 
   function handleScorecardSubmit(e) {
     e.preventDefault();
+    scorecard.key = scorecardId;
+    setScorecardId((scorecardId) => scorecardId + 1);
     setScorecards((scorecards) => [scorecard, ...scorecards]);
     setScorecard(initialScorecard);
+    console.log("Form Submnitted");
+  }
+
+  function handleDeleteScorecard(id) {
+    const newList = scorecards.filter((scorecard) => scorecard.id !== id);
+    setScorecards(newList);
   }
 
   return (
@@ -227,7 +237,10 @@ function Profile() {
           />
         )}
 
-        <ScorecardList scorecard={scorecard} scorecards={scorecards} />
+        <ScorecardList
+          scorecards={scorecards}
+          handleDeleteScorecard={handleDeleteScorecard}
+        />
       </div>
     </div>
   );
