@@ -1,6 +1,6 @@
 function ScorecardForm({ scorecard, setScorecard, handleScorecardSubmit }) {
   return (
-    <form className="h-128 mx-80 my-8 border-2 border-slate-200 rounded-2xl">
+    <form className="h-128 mx-80 my-28 border-2 border-slate-200 rounded-2xl">
       <div className="flex h-112">
         <div className="flex flex-col justify-around items-base basis-1/3 border pl-6">
           <label>
