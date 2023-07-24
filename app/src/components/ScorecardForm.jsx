@@ -5,17 +5,36 @@ function ScorecardForm({ scorecard, setScorecard, handleScorecardSubmit }) {
         <div className="flex flex-col justify-around items-base basis-1/3 border pl-6">
           <label>
             Date:
-            <input className="scorecard w-20" type="date"></input>
+            <input
+              onChange={(e) =>
+                setScorecard({ ...scorecard, date: e.target.value })
+              }
+              value={scorecard.date}
+              className="scorecard w-20"
+              type="date"
+            ></input>
           </label>
 
           <label>
             Location:
-            <input className="scorecard w-48" type="text"></input>
+            <input
+              onChange={(e) =>
+                setScorecard({ ...scorecard, location: e.target.value })
+              }
+              className="scorecard w-48"
+              value={scorecard.location}
+              type="text"
+            ></input>
           </label>
 
           <label>
             Tee Box:{" "}
-            <select name="tee-box">
+            <select
+              onChange={(e) =>
+                setScorecard({ ...scorecard, tee: e.target.value })
+              }
+              name="tee-box"
+            >
               <option value="red">Red</option>
               <option value="white">White</option>
               <option value="blue">Blue</option>

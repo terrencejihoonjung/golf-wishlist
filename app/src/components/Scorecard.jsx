@@ -1,21 +1,11 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 
 function Scorecard({ scorecard, handleDeleteScorecard }) {
-  //   const totalPar = Object.keys(scorecard).reduce((prev, key) => {
-  //     if (key.startsWith("par")) {
-  //       return prev[key] + scorecard[key];
-  //     }
-  //   });
-  //   const totalScore = Object.keys(scorecard).reduce((prev, key) => {
-  //     if (key.startsWith("my")) {
-  //       return prev[key] + scorecard[key];
-  //     }
-  //   });
   return (
     <div className="flex flex-col h-128 border-2 border-slate-300 shadow-lg p-4 rounded-2xl">
       <div className="flex">
         <h2 className="grow text-zanah-950">
-          This is location {"(Tee)"} - This is date
+          {scorecard.location} ({scorecard.tee}) - {scorecard.date}
         </h2>
 
         <i
@@ -115,7 +105,10 @@ function Scorecard({ scorecard, handleDeleteScorecard }) {
         </span>
       </div>
       <div className="flex justify-end basis-1/6 items-center mr-4">
-        <p className="underline underline-offset-4">SCORE: 0</p>
+        <p className="underline underline-offset-4">
+          SCORE:{" "}
+          {scorecard.score >= 0 ? `+${scorecard.score}` : `${scorecard.score}`}
+        </p>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { UserIcon } from "@heroicons/react/24/outline";
 import YardageForm from "./YardageForm";
 import YardageDisplay from "./YardageDisplay";
@@ -7,6 +7,10 @@ import ScorecardList from "./ScorecardList";
 
 function Profile() {
   const initialScorecard = {
+    score: 0,
+    date: "",
+    location: "",
+    tee: "",
     hOne: "",
     hTwo: "",
     hThree: "",
@@ -63,7 +67,7 @@ function Profile() {
     parEighteen: "",
   };
   const initialYardages = {
-    key: 0,
+    id: 0,
     driver: 0,
     threeWood: 0,
     fiveWood: 0,
@@ -99,19 +103,49 @@ function Profile() {
     setAddScorecard(!addScorecard);
   }
 
+  function calculateMyScore() {
+    let myScore = 0;
+    let parScore = 0;
+
+    Object.keys(scorecard).forEach((key) => {
+      if (key.startsWith("my")) {
+        myScore += parseInt(scorecard[key]);
+        console.log(myScore);
+      } else if (key.startsWith("par")) {
+        parScore += parseInt(scorecard[key]);
+        console.log(parScore);
+      }
+    });
+
+    return myScore - parScore;
+  }
+
   function handleScorecardSubmit(e) {
     e.preventDefault();
-    scorecard.key = scorecardId;
+    scorecard.id = scorecardId;
     setScorecardId((scorecardId) => scorecardId + 1);
+    scorecard.score = calculateMyScore();
+    console.log(scorecard.score);
     setScorecards((scorecards) => [scorecard, ...scorecards]);
     setScorecard(initialScorecard);
-    console.log("Form Submnitted");
   }
 
   function handleDeleteScorecard(id) {
     const newList = scorecards.filter((scorecard) => scorecard.id !== id);
     setScorecards(newList);
   }
+
+  useEffect(() => {
+    // iterate through scorecards, for each scorecard add scores
+    let currHandicap = scorecards.reduce((acc, obj) => {
+      return acc + obj.score;
+    }, 0);
+
+    // return score sum divided by len(scorecards)
+    currHandicap == 0
+      ? null
+      : setHandicap((currHandicap) => currHandicap / scorecards.length);
+  }, [scorecards]);
 
   return (
     <div className={isEditing ? "blur-sm" : "blur-none"}>
@@ -128,15 +162,7 @@ function Profile() {
             <option value="master">Master</option>
           </select>
 
-          <label className="mt-2">
-            HC:{" "}
-            <input
-              className="w-12"
-              type="text"
-              value={handicap}
-              onChange={(e) => setHandicap(e.target.value)}
-            />
-          </label>
+          <p className="mt-2 mr-8">HC:{handicap}</p>
         </div>
 
         <div className="flex basis-2/3 justify-center">
