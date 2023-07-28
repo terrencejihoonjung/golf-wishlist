@@ -92,8 +92,20 @@ function Profile() {
 
   const [isEditing, setIsEditing] = useState(false);
   const [distance, setDistance] = useState("yds");
-  const [handicap, setHandicap] = useState("");
+  const [handicap, setHandicap] = useState(0);
   const [scorecardId, setScorecardId] = useState(0);
+
+  useEffect(() => {
+    // iterate through scorecards, for each scorecard add scores
+    let currHandicap = scorecards.reduce((acc, obj) => {
+      return acc + obj.score;
+    }, 0);
+
+    // return score sum divided by len(scorecards)
+    currHandicap == 0
+      ? setHandicap(0)
+      : setHandicap((currHandicap / scorecards.length).toFixed(2));
+  }, [scorecards]);
 
   function handleEdit() {
     setIsEditing(!isEditing);
@@ -110,10 +122,8 @@ function Profile() {
     Object.keys(scorecard).forEach((key) => {
       if (key.startsWith("my")) {
         myScore += parseInt(scorecard[key]);
-        console.log(myScore);
       } else if (key.startsWith("par")) {
         parScore += parseInt(scorecard[key]);
-        console.log(parScore);
       }
     });
 
@@ -123,10 +133,10 @@ function Profile() {
   function handleScorecardSubmit(e) {
     e.preventDefault();
     scorecard.id = scorecardId;
-    setScorecardId((scorecardId) => scorecardId + 1);
+    scorecard.id = scorecardId;
     scorecard.score = calculateMyScore();
-    console.log(scorecard.score);
     setScorecards((scorecards) => [scorecard, ...scorecards]);
+    setScorecardId((scorecardId) => scorecardId + 1);
     setScorecard(initialScorecard);
   }
 
@@ -134,18 +144,6 @@ function Profile() {
     const newList = scorecards.filter((scorecard) => scorecard.id !== id);
     setScorecards(newList);
   }
-
-  useEffect(() => {
-    // iterate through scorecards, for each scorecard add scores
-    let currHandicap = scorecards.reduce((acc, obj) => {
-      return acc + obj.score;
-    }, 0);
-
-    // return score sum divided by len(scorecards)
-    currHandicap == 0
-      ? null
-      : setHandicap((currHandicap) => currHandicap / scorecards.length);
-  }, [scorecards]);
 
   return (
     <div className={isEditing ? "blur-sm" : "blur-none"}>

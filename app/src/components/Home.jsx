@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import yardageAsset from "../assets/yardagesAsset.png";
+import scorecardAsset from "../assets/scorecardAsset.png";
 
 function Home() {
   return (
@@ -13,13 +15,13 @@ function Home() {
         </div>
 
         <div className="flex basis-1/2 justify-center items-center">
-          <p class="text-base text-center">Scorecard template here</p>
+          <img src={scorecardAsset} class="p-20" />
         </div>
       </div>
 
       <div className="flex h-160">
         <div className="flex basis-1/2 justify-center items-center">
-          <p className="text-base text-center">Yardage template here</p>
+          <img src={yardageAsset} className="p-20" />
         </div>
 
         <div className="flex flex-col basis-1/2 justify-center items-center">
@@ -31,7 +33,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col justify-center items-center h-160">
+      <div className="flex flex-col justify-center items-center h-128">
         <h2 className="m-3 text-xl">Contact Info</h2>
         <nav className="w-full py-5">
           <Link className="mx-4" to="https://github.com/terrencejihoonjung">
